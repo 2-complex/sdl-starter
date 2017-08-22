@@ -20,7 +20,7 @@ run: events
 	./events
 
 sdl: SDL-mirror
-
+	cd SDL-mirror && ./configure && make install
 
 events: sdl events.cpp
 	c++ \
