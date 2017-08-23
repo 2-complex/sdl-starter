@@ -19,8 +19,15 @@ SDL_C_FLAGS = \
 run: events
 	./events
 
+sdl-makefile: SDL-mirror
+	cd SDL-mirror && ./configure
+
 sdl: SDL-mirror
-	cd SDL-mirror && ./configure && make install
+	cd SDL-mirror && make install
+
+SDL-mirror:
+	git submodule init
+	git submodule update --recursive
 
 events: sdl events.cpp
 	c++ \
@@ -34,6 +41,3 @@ flash: sdl flash.cpp
 		$(SDL_C_FLAGS) \
 		$(SDL_STATIC_LIBS)
 
-SDL-mirror:
-	git submodule init
-	git submodule update --recursive
