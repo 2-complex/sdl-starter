@@ -19,13 +19,13 @@ SDL_C_FLAGS = \
 run: events
 	./events
 
-sdl-makefile: SDL-mirror
+SDL-mirror/Makefile: SDL-mirror/configure
 	cd SDL-mirror && ./configure
 
-sdl: SDL-mirror
+sdl: SDL-mirror/Makefile
 	cd SDL-mirror && make install
 
-SDL-mirror:
+SDL-mirror/configure:
 	git submodule init
 	git submodule update --recursive
 
