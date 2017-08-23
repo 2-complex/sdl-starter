@@ -1,13 +1,1 @@
-events
-flash
-
-SDL-mirror/Makefile
-SDL-mirror/Makefile.rules
-SDL-mirror/SDL2.spec
-SDL-mirror/build/
-SDL-mirror/config.log
-SDL-mirror/config.status
-SDL-mirror/libtool
-SDL-mirror/sdl2-config
-SDL-mirror/sdl2-config.cmake
-SDL-mirror/sdl2.pc
+bin/*

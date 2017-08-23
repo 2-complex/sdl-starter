@@ -16,8 +16,16 @@ SDL_C_FLAGS = \
 	-I/usr/local/include/SDL2 \
 	-D_THREAD_SAFE
 
-run: events
-	./events
+BIN = bin
+
+
+run: $(BIN)/windows
+	./$(BIN)/windows
+
+all: \
+	$(BIN)/flash \
+	$(BIN)/events \
+	$(BIN)/windows
 
 SDL-mirror/Makefile: SDL-mirror/configure
 	cd SDL-mirror && ./configure
@@ -29,15 +37,24 @@ SDL-mirror/configure:
 	git submodule init
 	git submodule update --recursive
 
-events: sdl events.cpp
+$(BIN)/events: sdl events.cpp
 	c++ \
-		events.cpp -o events \
+		events.cpp -o $(BIN)/events \
 		$(SDL_C_FLAGS) \
 		$(SDL_STATIC_LIBS)
 
-flash: sdl flash.cpp
+$(BIN)/windows: sdl windows.cpp
 	c++ \
-		flash.cpp -o flash \
+		windows.cpp -o $(BIN)/windows \
 		$(SDL_C_FLAGS) \
 		$(SDL_STATIC_LIBS)
+
+$(BIN)/flash: sdl flash.cpp
+	c++ \
+		flash.cpp -o $(BIN)/flash \
+		$(SDL_C_FLAGS) \
+		$(SDL_STATIC_LIBS)
+
+clean:
+	-rm -f bin/*
 
