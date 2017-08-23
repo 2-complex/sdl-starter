@@ -1,0 +1,3 @@
+[submodule "SDL-mirror"]
+	path = SDL-mirror
+	url = http://github.com/2-complex/SDL-mirror
