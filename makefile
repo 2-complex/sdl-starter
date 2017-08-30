@@ -37,6 +37,12 @@ SDL-mirror/configure:
 	git submodule init
 	git submodule update --recursive
 
+$(BIN)/loadbmp: sdl loadbmp.cpp
+	c++ \
+		loadbmp.cpp -o $(BIN)/loadbmp \
+		$(SDL_C_FLAGS) \
+		$(SDL_STATIC_LIBS)
+
 $(BIN)/events: sdl events.cpp
 	c++ \
 		events.cpp -o $(BIN)/events \
