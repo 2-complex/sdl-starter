@@ -18,14 +18,11 @@ SDL_C_FLAGS = \
 
 BIN = bin
 
-
-run: $(BIN)/windows
-	./$(BIN)/windows
-
 all: \
 	$(BIN)/flash \
 	$(BIN)/events \
-	$(BIN)/windows
+	$(BIN)/windows \
+	$(BIN)/playwav
 
 SDL-mirror/Makefile: SDL-mirror/configure
 	cd SDL-mirror && ./configure
@@ -36,6 +33,12 @@ sdl: SDL-mirror/Makefile
 SDL-mirror/configure:
 	git submodule init
 	git submodule update --recursive
+
+$(BIN)/playwav: sdl playwav.cpp
+	c++ \
+		playwav.cpp -o $(BIN)/playwav \
+		$(SDL_C_FLAGS) \
+		$(SDL_STATIC_LIBS)
 
 $(BIN)/loadbmp: sdl loadbmp.cpp
 	c++ \
